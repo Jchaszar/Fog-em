@@ -1,0 +1,8 @@
+{
+  "name": "Fog-emApp",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
