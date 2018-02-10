@@ -9,10 +9,7 @@ import { Calendar } from '@ionic-native/calendar';
 export class HomePage {
 
   constructor(public navCtrl: NavController, private calendar: Calendar) {
-  	this.calendar.createCalendar('MyCalendar').then(
-  (msg) => { console.log(msg); },
-  (err) => { console.log(err); }
-);
+  	
   }
 
 }

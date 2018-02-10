@@ -9,9 +9,18 @@ import { LoginPage } from '../pages/login/login';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    const unsubscribe = firebase.auth().onAuthStateChanged( user => {
+      if (!user){
+        this.rootPage = 'LoginPage';
+        unsubscribe();
+      } else {
+        this.rootPage = HomePage;
+        unsubscribe();
+      }
+    });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

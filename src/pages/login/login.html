@@ -14,17 +14,33 @@
 
 
 <ion-content padding>
-	<ion-input placeholder="Username">
-	</ion-input>
-	<ion-input placeholder="Password">
-	</ion-input>
-	<button ion-button color="default"
-		(click)="homeScreen()">
+	<form [formGroup] ="loginForm"
+	 (submit)="loginUser()" novalidate>
+	 <ion-item>
+	 	<ion-label stacked>Email</ion-label>
+		<ion-input formControlName="email" type="email" placeholder="Your Email Address" [class.invalid="!loginForm.controls.email.valid && blur">
+		</ion-input>
+	</ion-item>
+
+	<ion-item>
+		<ion-label stacked>Password</ion-label>
+		<ion-input formControlName="password" type="password" placeholder="Your Password"
+		[class.invalid]="!loginForm.controls.password.valid && blur">
+		</ion-input>
+	</ion-item>
+
+	<button ion-button type="submit" color="default" [disabled]="!loginForm.valid">
 		Login
 	</button>
-	<button ion-button color="default"
-		(click)="newUser()">
-		Create Account
-	</button>
+</form>
+
+<button ion-button block clear (click)="goToSignup()">
+	Create New Account
+</button>
+
+<button ion-button block clear (click)="goToResetPassword()">
+	Forgot your password?
+</button>
+
 
 </ion-content>
