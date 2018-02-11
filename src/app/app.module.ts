@@ -9,24 +9,32 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+
+
+import { SignUpPageModule } from '../pages/sign-up/sign-up.module';
 import { AuthProvider } from '../providers/auth/auth';
+import { ResetPasswordPageModule } from '../pages/reset-password/reset-password.module';
+import { LoginPageModule } from '../pages/login/login.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
-    SignUpPage,
     HomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    SignUpPageModule,
+    ResetPasswordPageModule,
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
     SignUpPage,
+    ResetPasswordPage,
     HomePage
   ],
   providers: [
@@ -34,7 +42,8 @@ import { AuthProvider } from '../providers/auth/auth';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+
   ]
 })
 export class AppModule {}

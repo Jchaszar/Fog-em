@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
+import firebase from 'firebase';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-home',
@@ -8,8 +10,16 @@ import { Calendar } from '@ionic-native/calendar';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private calendar: Calendar) {
+  constructor(public navCtrl: NavController, public authProvider: AuthProvider) {
   	
+  }
+
+  logOut(): void{
+	this.authProvider.logoutUser().then(() => {
+		this.navCtrl.setRoot("LoginPage");
+	});
+	
+
   }
 
 }
