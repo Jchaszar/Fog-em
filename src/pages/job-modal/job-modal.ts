@@ -6,6 +6,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'page-job-modal',
   templateUrl: 'job-modal.html',
+  
 })
 export class JobModalPage {
 	event = { startTime: new Date().toISOString, endTime: new Date().toISOString, allDay: false};
