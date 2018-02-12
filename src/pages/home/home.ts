@@ -21,7 +21,7 @@ export class HomePage {
     };
 
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController, public authProvider: AuthProvider) {
-  	
+  	 
   }
 
   logOut(): void{
