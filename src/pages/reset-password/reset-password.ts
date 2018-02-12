@@ -47,7 +47,7 @@ export class ResetPasswordPage {
 		}, (error) => {
 			var errorMessage: string = error.message;
 			let errorAlert = this.alertCtrl.create({
-				message: errorMessage;
+				message: errorMessage,
 				buttons: [{ text: "Ok", role: 'cancel'}]
 
 			});

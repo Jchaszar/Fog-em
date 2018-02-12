@@ -9,13 +9,13 @@ import * as moment from 'moment';
   
 })
 export class JobModalPage {
-	event = { startTime: new Date().toISOString, endTime: new Date().toISOString, allDay: false};
-	minDate = new Date().toISOString();
+	event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
+  minDate = new Date().toISOString();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   	let preselectedDate = moment(this.navParams.get('selectedDay')).format();
   	this.event.startTime = preselectedDate;
-  	this.event.endTime = preselectedDate;
+    this.event.endTime = preselectedDate;
   }
 
   ionViewDidLoad() {
