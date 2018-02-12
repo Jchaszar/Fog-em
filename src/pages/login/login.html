@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Fog'em Employee Login</ion-title>
+    <ion-title>Fog'Em Employee Login</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -34,10 +34,7 @@
 		Login
 	</button>
 </form>
-
-<button ion-button block clear (click)="goToSignup()">
-	Create New Account
-</button>
+<br>
 
 <button ion-button block clear (click)="goToResetPassword()">
 	Forgot your password?
@@ -45,3 +42,11 @@
 
 
 </ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<button ion-button block (click)="goToSignup()">
+	Create New Account
+	</button>
+	</ion-toolbar>
+</ion-footer>
