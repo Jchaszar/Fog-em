@@ -26,4 +26,36 @@ export class ResetPasswordPage {
     console.log('ionViewDidLoad ResetPasswordPage');
   }
 
+  resetPassword(){
+  	if (!this.resetPasswordForm.valid){
+  		console.log(this.resetPasswordForm.value);
+	} else {
+		this.authProvider.resetPassword(this.resetPasswordForm.value.email)
+		.then((user) => {
+			let alert = this.alertCtrl.create({
+				message: "A reset link has been sent to your email",
+				buttons: [
+				{
+					text: "Ok",
+					role: 'cancel',
+					handler: () => {this.navCtrl.pop();}
+
+				}
+				]
+			});
+			alert.present();
+		}, (error) => {
+			var errorMessage: string = error.message;
+			let errorAlert = this.alertCtrl.create({
+				message: errorMessage;
+				buttons: [{ text: "Ok", role: 'cancel'}]
+
+			});
+			errorAlert.present();
+		});
+	}
+  }
+
+  
+
 }

@@ -1,6 +1,10 @@
 <ion-header>
 <ion-navbar color="primary">
-<ion-title>Home</ion-title>
+<ion-title>Dashboard</ion-title>
+<button ion-button (click)="addJob()">
+	<ion-icon name="add"></ion-icon>
+	<label> &nbsp; Add Job</label>
+</button>
 <ion-buttons end>
 <button ion-button icon-only (click)="logOut()">
 <ion-icon name="log-out"></ion-icon>
@@ -10,5 +14,13 @@
 </ion-header>
 
 <ion-content padding>
-  
+<calendar [eventSource]="eventSource" 
+		[calendarMode]="calendar.mode"
+		[currentDate]="calendar.currentDate"
+		(onEventSelected)="onEventSelected($event)"
+		(onTitleChanged)="onViewTitleChanged($event)"
+		(onTimeSelected)="onTimeSelected($event)"
+		step="30"
+		class="calendar">
+	</calendar>
 </ion-content>

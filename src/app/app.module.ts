@@ -11,6 +11,9 @@ import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
+import { CommonModule } from '@angular/common';
+import { NgCalendarModule } from 'ionic2-calendar';
+import { FormsModule } from '@angular/forms';
 
 import { SignUpPageModule } from '../pages/sign-up/sign-up.module';
 import { AuthProvider } from '../providers/auth/auth';
@@ -24,7 +27,10 @@ import { LoginPageModule } from '../pages/login/login.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     IonicModule.forRoot(MyApp),
+    CommonModule,
+    NgCalendarModule,
     SignUpPageModule,
     ResetPasswordPageModule,
     LoginPageModule
