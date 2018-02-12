@@ -1,12 +1,9 @@
 <ion-header>
 <ion-navbar color="primary">
 <ion-title>Dashboard</ion-title>
-<button ion-button (click)="addJob()">
-	<ion-icon name="add"></ion-icon>
-	<label> &nbsp; Add Job</label>
-</button>
 <ion-buttons end>
-<button ion-button icon-only (click)="logOut()">
+<button ion-button (click)="logOut()">
+<label> Log Out &nbsp;</label>
 <ion-icon name="log-out"></ion-icon>
 </button>
 </ion-buttons>
@@ -14,6 +11,14 @@
 </ion-header>
 
 <ion-content padding>
+	<button ion-button>
+	<ion-icon name="add"></ion-icon>
+	<label> &nbsp; Add Client</label>
+</button>
+	<button ion-button (click)="addJob()">
+	<ion-icon name="add"></ion-icon>
+	<label> &nbsp; Add Job</label>
+</button>
 <calendar [eventSource]="eventSource" 
 		[calendarMode]="calendar.mode"
 		[currentDate]="calendar.currentDate"
