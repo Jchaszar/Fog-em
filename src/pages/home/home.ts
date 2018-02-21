@@ -77,8 +77,8 @@ export class HomePage {
     let end = moment(event.endTime).format('LLLL');
 
     let alert = this.alertCtrl.create({
-      title: '' + event.title,
-      subTitle: 'From: ' + start + '<br>To: ' + end,
+      title: '' + event.name,
+      subTitle: 'Address: ' + event.address + '<br>From: ' + start + '<br>To: ' + end,
       buttons: ['OK']
     })
     alert.present()
