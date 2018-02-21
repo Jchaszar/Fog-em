@@ -49,6 +49,24 @@ export class HomePage {
       }
     });
   }
+  addClient(){
+    let modal = this.modalCtrl.create('ClientModalPage');
+    modal.present();
+    modal.onDidDismiss(client =>  {
+      if (client){
+        var clientsRef = firebase.database().ref("clients/");
+
+        let clientData = client;
+        var clientName = clientData.name;
+
+
+        clientsRef.push({  
+            name: clientData.name,        
+            address: clientData.address
+        });
+      }
+    });
+  }
 
   onViewTitleChanged(title){
     this.viewTitle = title;

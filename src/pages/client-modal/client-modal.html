@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<ion-buttons start>
+  		<button ion-button icon-only (click) = "cancel()">
+  		<ion-icon name="close"></ion-icon>
+  	</button>
+  </ion-buttons>
+
+    <ion-title>Client Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+	<ion-list>
+		<ion-item>
+			<ion-input type="text" placeholder="First & Last Name" [(ngModel)]="client.name"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-input type="text" placeholder="Street Address" [(ngModel)]="client.address"></ion-input>
+		</ion-item>
+	</ion-list>
+	<br>
+	<button ion-button full icon-left (click)="save()">
+		<ion-icon name="checkmark"></ion-icon> Add Client
+	</button>
+
+
+</ion-content>
