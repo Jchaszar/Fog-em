@@ -17,13 +17,13 @@
 	<img src="../assets/imgs/fog-em emblem.jpg" style="margin-left: auto;margin-right: auto; display: block;">
 	<form [formGroup] ="loginForm"
 	 (submit)="loginUser()" novalidate>
-	 <ion-item>
+	 <ion-item style="padding-left: 3px">
 	 	<ion-label stacked>Email</ion-label>
 		<ion-input formControlName="email" type="email" style="margin-left: 5px" placeholder="Your Email Address" [class.invalid]="!loginForm.controls.email.valid && blur">
 		</ion-input>
 	</ion-item>
 
-	<ion-item>
+	<ion-item style="padding-left: 3px">
 		<ion-label stacked>Password</ion-label>
 		<ion-input formControlName="password" type="password" placeholder="Your Password"
 		[class.invalid]="!loginForm.controls.password.valid && blur">
