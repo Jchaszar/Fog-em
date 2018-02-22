@@ -11,7 +11,7 @@ import firebase from 'firebase';
   
 })
 export class JobModalPage {
-	event = { name: "", address: "", startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
+	event = { title: "",name: "", address: "", startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
   minDate = new Date().toISOString();
   modalClientName;
   modalClientAddress;
@@ -41,9 +41,11 @@ export class JobModalPage {
   submitClient(client){
     this.event.name = client.name;
     this.event.address = client.address;
+    this.event.title = client.name;
     console.log("Submit Client:");
-    console.log(this.event.name);
+    //console.log(this.event.name);
     console.log(this.event.address);
+    console.log(event.title);
   }
 
   initializeItems(): void{
