@@ -24,15 +24,34 @@
 <ion-title>
 	{{ viewTitle }}
 </ion-title>
+
+<ng-template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+            <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+                <ion-item *ngFor="let event of selectedDate?.events" (click)="onEventSelected(event)">
+                        <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'hh:mm a'}}
+                            -
+                            {{event.endTime|date: 'hh:mm a'}}
+                        </span>
+                    <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">All day</span>
+                    <span class="event-detail">  |  {{event.title}}</span>
+                </ion-item>
+                <ion-item *ngIf="selectedDate?.events.length==0">
+                    <div class="no-events-label">{{noEventsLabel}}</div>
+                </ion-item>
+            </ion-list>
+</ng-template>
+<!--(onEventSelected)="onEventSelected($event)"-->
 <calendar [eventSource]="eventSource" 
 		[calendarMode]="calendar.mode"
 		[currentDate]="calendar.currentDate"
 		[noEventsLabel]="calendar.eventLabel"
-
-		(onEventSelected)="onEventSelected($event)"
 		(onTitleChanged)="onViewTitleChanged($event)"
 		(onTimeSelected)="onTimeSelected($event)"
+		[monthviewEventDetailTemplate]="monthviewDefaultEventDetailTemplate"
 		step="30"
 		class="calendar">
 	</calendar>
+
+
+
 </ion-content>
