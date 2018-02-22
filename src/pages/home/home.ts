@@ -19,10 +19,10 @@ export class HomePage {
 
     calendar={
       mode: 'month',
-      currentDate: new Date()
+      currentDate: new Date(),
+      eventLabel: 'No Jobs Today'
     };
-    string;
-    date;
+    
 
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController, public authProvider: AuthProvider) {
   }

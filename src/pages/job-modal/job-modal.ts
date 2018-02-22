@@ -45,7 +45,7 @@ export class JobModalPage {
     console.log("Submit Client:");
     //console.log(this.event.name);
     console.log(this.event.address);
-    console.log(event.title);
+    console.log(this.event.title);
   }
 
   initializeItems(): void{
