@@ -23,12 +23,11 @@
 <ion-title>
 	{{ viewTitle }}
 </ion-title>
-<!--[noEventsLabel]="calendar.eventLabel"-->
 <calendar [eventSource]="eventSource" 
 		[calendarMode]="calendar.mode"
 		[currentDate]="calendar.currentDate"
 		[noEventsLabel]="calendar.eventLabel"
-		
+
 		(onEventSelected)="onEventSelected($event)"
 		(onTitleChanged)="onViewTitleChanged($event)"
 		(onTimeSelected)="onTimeSelected($event)"

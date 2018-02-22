@@ -17,22 +17,25 @@ export class HomePage {
     viewTitle: string;
     selectedDay = new Date();
 
+    //calendar html variables
     calendar={
       mode: 'month',
       currentDate: new Date(),
       eventLabel: 'No Jobs Today'
     };
-    
+
 
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController, public authProvider: AuthProvider) {
   }
 
+  //logout function, sets rootpage to Login page and logs out user
   logOut(): void{
 	this.authProvider.logoutUser().then(() => {
 		this.navCtrl.setRoot("LoginPage");
 	});
 }
 
+  //function for adding job, creates a jobModal and sends data to eventSource for calendar after completion
   addJob(){
     let modal = this.modalCtrl.create('JobModalPage',{selectedDay: this.selectedDay});
     modal.present();
@@ -43,6 +46,7 @@ export class HomePage {
         eventData.startTime = new Date(data.startTime);
         eventData.endTime = new Date(data.endTime);
 
+        //pushs newly made job to firebase database /jobs/
         jobsRef.push({
           title: eventData.title,
           name: eventData.name,
@@ -54,6 +58,8 @@ export class HomePage {
         let events = this.eventSource;
         events.push(eventData);
         this.eventSource = [];
+
+        //Timeout is important otherwise wont update calendar correctly
         setTimeout(() => {
           this.eventSource = events;
           console.log(this.eventSource);
@@ -62,6 +68,8 @@ export class HomePage {
       }
     });
   }
+
+  //function to add client to client database /clients/
   addClient(){
     let modal = this.modalCtrl.create('ClientModalPage');
     modal.present();
@@ -81,10 +89,12 @@ export class HomePage {
     });
   }
 
+  //changes month title when changing to new month
   onViewTitleChanged(title){
     this.viewTitle = title;
   }
 
+  //function for when event is clicked
   onEventSelected(event){
     let start = moment(event.startTime).format('LLLL');
     let end = moment(event.endTime).format('LLLL');
@@ -97,10 +107,12 @@ export class HomePage {
     alert.present()
   }
 
+  //sets initial times to the day the user selected
   onTimeSelected(ev){
     this.selectedDay = ev.selectedTime;
   }
 
+  //on first load, instantiates calendar objects through loadJobs() function
   ionViewDidLoad() {
 
     this.loadJobs();
@@ -108,6 +120,7 @@ export class HomePage {
     
   }
 
+  //method to load pre-existing jobs through the "/jobs/" firebase database
   loadJobs(){
     var jobsRef = firebase.database().ref("jobs/");
 

@@ -11,6 +11,7 @@ import firebase from 'firebase';
   
 })
 export class JobModalPage {
+  //event variable used to create Array items for eventSource
 	event = { title: "",name: "", address: "", startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
   minDate = new Date().toISOString();
   modalClientName;
@@ -25,7 +26,8 @@ export class JobModalPage {
   	this.event.startTime = preselectedDate;
     this.event.endTime = preselectedDate;
     this.clientRef = firebase.database().ref('/clients');
-  
+
+    //pushs clientlist info for searchbar integration
     this.clientRef.on('value', clientList => {
       let clients = [];
       clientList.forEach( client => {
@@ -38,6 +40,8 @@ export class JobModalPage {
     });
 
   }
+
+  //method for submitting client info for job db
   submitClient(client){
     this.event.name = client.name;
     this.event.address = client.address;
@@ -48,10 +52,12 @@ export class JobModalPage {
     console.log(this.event.title);
   }
 
+  //sets list to the current loadedlist
   initializeItems(): void{
     this.clientList = this.loadedClientList;
   }
 
+  //method run to filter search when user changes searchbar criteria
   getItems(searchbar){
     this.initializeItems();
 
@@ -77,11 +83,12 @@ export class JobModalPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad JobModalPage');
   }
-
+  //cancel method for modal
   cancel(){
   	this.viewCtrl.dismiss();
   }
 
+  //saves event info and exits modal
   save(){
     console.log(this.event.startTime);
     console.log(this.event.endTime);
