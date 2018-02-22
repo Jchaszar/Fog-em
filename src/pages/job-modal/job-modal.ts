@@ -83,6 +83,8 @@ export class JobModalPage {
   }
 
   save(){
+    console.log(this.event.startTime);
+    console.log(this.event.endTime);
   	this.viewCtrl.dismiss(this.event);
   }
 

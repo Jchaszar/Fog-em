@@ -12,6 +12,8 @@ import * as moment from 'moment';
 })
 export class HomePage {
     eventSource = [];
+    //eventSource: FirebaseListObservable<any[]>;
+
     viewTitle: string;
     selectedDay = new Date();
 
@@ -19,6 +21,8 @@ export class HomePage {
       mode: 'month',
       currentDate: new Date()
     };
+    string;
+    date;
 
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController, public authProvider: AuthProvider) {
   }
@@ -35,15 +39,24 @@ export class HomePage {
     modal.onDidDismiss(data => {
       if(data){
         let eventData = data;
-
+        var jobsRef = firebase.database().ref("jobs/");
         eventData.startTime = new Date(data.startTime);
         eventData.endTime = new Date(data.endTime);
+
+        jobsRef.push({
+          title: eventData.title,
+          name: eventData.name,
+          address: eventData.address,
+          startTime: eventData.startTime.toString(),
+          endTime: eventData.endTime.toString()
+          });
 
         let events = this.eventSource;
         events.push(eventData);
         this.eventSource = [];
         setTimeout(() => {
           this.eventSource = events;
+          console.log(this.eventSource);
 
         });
       }
@@ -87,4 +100,35 @@ export class HomePage {
   onTimeSelected(ev){
     this.selectedDay = ev.selectedTime;
   }
+
+  ionViewDidLoad() {
+
+    this.loadJobs();
+    console.log(this.eventSource);   
+    
+  }
+
+  loadJobs(){
+    var jobsRef = firebase.database().ref("jobs/");
+
+    jobsRef.once('value', (snapshot) => {
+      let events = this.eventSource;
+      snapshot.forEach( snap => {
+        //changing from String back to date format
+        snap.val().startTime = new Date(snap.val().startTime);
+        snap.val().endTime = new Date(snap.val().endTime);
+        let eventData = {title: snap.val().title, name: snap.val().name, address: snap.val().address,
+                          startTime: new Date(snap.val().startTime), endTime: new Date(snap.val().endTime)};
+        //console.log(eventData);
+        events.push(eventData);
+        this.eventSource = [];
+        setTimeout(() => {
+          this.eventSource = events;
+        });
+        return false;
+      });
+    });
+  }
+
+
 }
